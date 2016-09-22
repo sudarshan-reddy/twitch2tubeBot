@@ -17,7 +17,7 @@ func upload2Tube(filename, title, desc, category, keywords, privacy *string) {
 		log.Fatalf("You must provide a filename of a video file to upload")
 	}
 
-	client, err := auth("id", "secret", "auth", "token", youtube.YoutubeUploadScope)
+	client, err := auth("id", "key", youtube.YoutubeUploadScope)
 	if err != nil {
 		log.Fatalf("Error building OAuth client: %v", err)
 	}

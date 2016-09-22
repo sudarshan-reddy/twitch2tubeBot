@@ -1,35 +1,21 @@
 package main
 
 import (
-	"context"
-	"fmt"
-	"log"
 	"net/http"
 
 	"golang.org/x/oauth2"
+	"golang.org/x/oauth2/google"
+	"golang.org/x/oauth2/jwt"
 )
 
-func auth(CID, CSecret, auth, token, scope1 string) (*http.Client, error) {
-	ctx := context.Background()
-	conf := &oauth2.Config{
-		ClientID:     CID,
-		ClientSecret: CSecret,
-		Scopes:       []string{scope1},
-		Endpoint: oauth2.Endpoint{
-			AuthURL:  auth,
-			TokenURL: token,
-		},
-	}
+func auth(clientEmail, key, scope1 string) (*http.Client, error) {
+	conf := &jwt.Config{
+		Email:      clientEmail,
+		PrivateKey: []byte(key),
+		Scopes:     []string{scope1},
+		TokenURL:   google.JWTTokenURL,
+		Subject:    "Sudarshan@everywhere.com"}
 
-	url := conf.AuthCodeURL("state", oauth2.AccessTypeOffline)
-	fmt.Printf("Visit the URL for the auth dialog: %v", url)
-
-	var code string
-	if _, err := fmt.Scan(&code); err != nil {
-		log.Fatal(err)
-	}
-
-	tok, err := conf.Exchange(ctx, code)
-
-	return conf.Client(ctx, tok), err
+	client := conf.Client(oauth2.NoContext)
+	return client, nil
 }

@@ -9,16 +9,16 @@ import (
 )
 
 type secrets struct {
-	Web wb
-}
-
-type wb struct {
-	ClientID     string `json:"client_id"`
-	ProjectID    string `json:"project_id"`
-	AuthURI      string `json:"auth_uri"`
-	TokenURI     string `json:"token_uri"`
-	X509         string `json:"auth_provider_x509_cert_url"`
-	ClientSecret string `json:"client_secret"`
+	Typ         string `json:"type"`
+	ProjectID   string `json:"project_id"`
+	PrivateID   string `json:"private_key_id"`
+	PrivateKey  string `json:"private_key"`
+	ClientEmail string `json:"client_email"`
+	ClientID    string `json:"client_id"`
+	AuthURI     string `json:"auth_uri"`
+	TokenURI    string `json:"token_uri"`
+	X509        string `json:"auth_provider_x509_cert_url"`
+	cX509       string `json:"client_x509_cert_url"`
 }
 
 func setFileName(videoName string) *string {
