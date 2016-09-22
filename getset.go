@@ -8,7 +8,7 @@ import (
 )
 
 type secrets struct {
-	web []wb
+	Web wb
 }
 
 type wb struct {
