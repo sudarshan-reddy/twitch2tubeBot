@@ -1,0 +1,12 @@
+language: go
+
+go:
+    - 1.5
+    - 1.6
+    - 1.7
+
+install :
+    - go get "golang.org/x/oauth2"
+    - go get "golang.org/x/oauth2/google"
+    - go get "golang.org/x/oauth2/jwt"	
+    - go get "google.golang.org/api/youtube/v3"
