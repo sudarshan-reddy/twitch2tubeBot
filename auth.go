@@ -9,7 +9,7 @@ import (
 	"golang.org/x/oauth2"
 )
 
-func auth(CID, CSecret, scope1, auth, token string) (*http.Client, error) {
+func auth(CID, CSecret, auth, token, scope1 string) (*http.Client, error) {
 	ctx := context.Background()
 	conf := &oauth2.Config{
 		ClientID:     CID,

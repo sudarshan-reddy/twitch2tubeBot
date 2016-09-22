@@ -1,3 +1,4 @@
+//no pun intended
 package main
 
 import (
