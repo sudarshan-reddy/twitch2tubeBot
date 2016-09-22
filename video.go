@@ -3,6 +3,7 @@ package main
 import (
 	"crypto/md5"
 	"encoding/hex"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -19,7 +20,7 @@ func getFileName(downloadLink string) string {
 	return hashStr
 }
 
-func downloadVids(downloadLink string, done chan<- bool) {
+func downloadVids(downloadLink string) (string, error) {
 	resp, err := http.Get(downloadLink)
 	if err != nil {
 		fmt.Println(err)
@@ -38,17 +39,8 @@ func downloadVids(downloadLink string, done chan<- bool) {
 		io.Copy(out, resp.Body)
 
 		fmt.Println("saved file ", file)
+		return file, nil
 	} else {
-		fmt.Println(file, " already exists")
+		return "", errors.New("file already exists")
 	}
-
-	done <- true
 }
-
-/*
-func main() {
-	link := "https://clips-media-assets.twitch.tv/23230359872-offset-2418-854x480.mp4"
-	done := make(chan bool)
-	downloadVids(link, done)
-}
-*/
