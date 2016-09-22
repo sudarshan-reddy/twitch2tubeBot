@@ -45,8 +45,10 @@ func downloadVids(downloadLink string, done chan<- bool) {
 	done <- true
 }
 
+/*
 func main() {
 	link := "https://clips-media-assets.twitch.tv/23230359872-offset-2418-854x480.mp4"
 	done := make(chan bool)
 	downloadVids(link, done)
 }
+*/

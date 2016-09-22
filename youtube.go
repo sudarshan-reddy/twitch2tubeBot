@@ -7,7 +7,7 @@ import (
 	"os"
 	"strings"
 
-	youtube "github.com/google/google-api-go-client/youtube/v3"
+	youtube "google.golang.org/api/youtube/v3"
 )
 
 var (
@@ -26,7 +26,7 @@ func main() {
 		log.Fatalf("You must provide a filename of a video file to upload")
 	}
 
-	client, err := buildOAuthHTTPClient(youtube.YoutubeUploadScope)
+	client, err := auth("id", "secret", youtube.YoutubeUploadScope)
 	if err != nil {
 		log.Fatalf("Error building OAuth client: %v", err)
 	}
