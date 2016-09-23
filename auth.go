@@ -14,7 +14,7 @@ func auth(clientEmail, key, scope1 string) (*http.Client, error) {
 		PrivateKey: []byte(key),
 		Scopes:     []string{scope1},
 		TokenURL:   google.JWTTokenURL,
-		Subject:    "Sudarshan@everywhere.com"}
+		Subject:    "sudar.theone@gmail.com"}
 
 	client := conf.Client(oauth2.NoContext)
 	return client, nil

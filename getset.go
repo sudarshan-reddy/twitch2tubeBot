@@ -23,7 +23,7 @@ type secrets struct {
 
 func setFileName(videoName string) *string {
 	//flag.String("filename", "", "Name of video file to upload")
-	return flag.String("filename", "", videoName)
+	return flag.String("filename", videoName, videoName)
 }
 
 func setTitle(testTitle, videoTitle string) *string {
@@ -53,7 +53,7 @@ func setPrivacy() *string {
 
 func getSecrets() (*secrets, error) {
 	var clientSecret secrets
-	file, err := os.Open("clientsecret.json")
+	file, err := os.Open("twitch2tube-ff26c1d2607c.json")
 	data, err := ioutil.ReadAll(file)
 
 	json.Unmarshal(data, &clientSecret)
